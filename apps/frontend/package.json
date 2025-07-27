@@ -20,6 +20,8 @@
   },
   "private": true,
   "dependencies": {
+    "@link-sharing-app/shared": "workspace:*",
+    "@link-sharing-app/shared-ui": "workspace:*",
     "@angular/common": "^20.1.0",
     "@angular/compiler": "^20.1.0",
     "@angular/core": "^20.1.0",
