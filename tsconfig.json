@@ -1,0 +1,9 @@
+{
+  "compilerOptions": {
+    "baseUrl": "./",
+    "paths": {
+      "@link-sharing-app/shared": ["packages/shared/index.ts"],
+      "@link-sharing-app/shared-ui": ["packages/shared-ui/index.scss"]
+    }
+  }
+}
