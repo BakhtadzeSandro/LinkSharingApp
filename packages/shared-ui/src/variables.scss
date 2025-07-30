@@ -1,0 +1,124 @@
+// ======================
+// COLORS
+// ======================
+
+// Primary Colors
+$color-primary: #633cff;
+$color-primary-hover: #beadff;
+$color-primary-light: #efebff;
+
+// Neutral Colors
+$color-dark: #333333;
+$color-gray: #737373;
+$color-gray-light: #d9d9d9;
+$color-gray-very-light: #fafafa;
+$color-white: #ffffff;
+
+// Status Colors
+$color-error: #ff3939;
+
+// ======================
+// TYPOGRAPHY
+// ======================
+
+// Font Family
+$font-family-primary: "Instrument Sans", sans-serif;
+
+// Font Weights
+$font-weight-regular: 400;
+$font-weight-medium: 500;
+$font-weight-bold: 600;
+
+// Font Sizes
+$font-size-heading-m: 32px;
+$font-size-heading-s: 16px;
+$font-size-body-m: 16px;
+$font-size-body-s: 12px;
+
+// Line Heights
+$line-height-heading-m: 150%;
+$line-height-heading-s: 150%;
+$line-height-body-m: 150%;
+$line-height-body-s: 150%;
+
+// ======================
+// SPACING
+// ======================
+
+$spacing-xs: 4px;
+$spacing-sm: 8px;
+$spacing-md: 12px;
+$spacing-lg: 16px;
+$spacing-xl: 24px;
+$spacing-xxl: 32px;
+
+// ======================
+// BORDERS
+// ======================
+
+$border-radius-sm: 4px;
+$border-radius-md: 8px;
+$border-radius-lg: 12px;
+
+$border-width: 1px;
+$border-color: $color-gray-light;
+$border-color-active: $color-primary;
+$border-color-error: $color-error;
+
+// ======================
+// BUTTONS
+// ======================
+
+// Button Heights
+$button-height-primary: 46px;
+$button-height-secondary: 46px;
+
+// Button States
+$button-primary-bg: $color-primary;
+$button-primary-bg-hover: $color-primary-hover;
+$button-primary-bg-disabled: $color-primary-light;
+$button-primary-text: $color-white;
+$button-primary-text-disabled: $color-white;
+
+$button-secondary-bg: transparent;
+$button-secondary-bg-hover: $color-primary-light;
+$button-secondary-bg-disabled: transparent;
+$button-secondary-text: $color-primary;
+$button-secondary-text-disabled: $color-gray;
+$button-secondary-border: $color-primary;
+$button-secondary-border-disabled: $color-gray-light;
+
+// ======================
+// FORM ELEMENTS
+// ======================
+
+// Input Fields
+$input-height: 48px;
+$input-padding: $spacing-lg;
+$input-bg: $color-white;
+$input-border: $border-width solid $border-color;
+$input-border-active: $border-width solid $border-color-active;
+$input-border-error: $border-width solid $border-color-error;
+$input-text-color: $color-dark;
+$input-placeholder-color: $color-gray;
+
+// Dropdown
+$dropdown-bg: $color-white;
+$dropdown-border: $border-width solid $border-color;
+$dropdown-border-active: $border-width solid $border-color-active;
+$dropdown-item-hover-bg: $color-primary-light;
+
+// ======================
+// SHADOWS
+// ======================
+
+$shadow-light: 0 0 32px 0 rgba(99, 60, 255, 0.25);
+$shadow-dropdown: 0 0 32px 0 rgba(0, 0, 0, 0.1);
+
+// ======================
+// TRANSITIONS
+// ======================
+
+$transition-fast: 0.2s ease-in-out;
+$transition-medium: 0.3s ease-in-out;
+$transition-slow: 0.5s ease-in-out;

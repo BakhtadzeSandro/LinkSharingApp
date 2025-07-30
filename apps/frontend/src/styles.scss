@@ -1,6 +1,14 @@
 /* You can add global styles to this file, and also import other style files */
+@use "@link-sharing-app/shared-ui/src/variables" as *;
+@import "../node_modules/primeicons/primeicons.css";
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+
+body {
+  background-color: $color-gray-very-light;
+  font-family: $font-family-primary;
 }
