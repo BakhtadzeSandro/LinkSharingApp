@@ -12,3 +12,9 @@ body {
   background-color: $color-gray-very-light;
   font-family: $font-family-primary;
 }
+
+body input {
+  &:focus {
+    border: 1px solid $color-primary !important;
+  }
+}

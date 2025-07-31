@@ -1,0 +1,12 @@
+{
+  "Login": {
+    "Title": "Login",
+    "Description": "Add your details below to get back into the app",
+    "EmailAddress": "Email Address",
+    "Password": "Password",
+    "EnterYourPassword": "Enter your password",
+    "ForgotPassword": "Forgot password?",
+    "DontHaveAnAccount": "Don't have an account?",
+    "CreateAccount": "Create account"
+  }
+}

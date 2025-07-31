@@ -12,6 +12,8 @@ import { IconFieldModule } from 'primeng/iconfield';
 import { InputIconModule } from 'primeng/inputicon';
 import { InputTextModule } from 'primeng/inputtext';
 import { ButtonModule } from 'primeng/button';
+import { PasswordModule } from 'primeng/password';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-login',
@@ -23,6 +25,8 @@ import { ButtonModule } from 'primeng/button';
     FormsModule,
     InputTextModule,
     ButtonModule,
+    PasswordModule,
+    TranslateModule,
   ],
   templateUrl: './login.html',
   styleUrl: './login.scss',

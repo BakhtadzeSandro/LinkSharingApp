@@ -12,6 +12,9 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import Aura from '@primeuix/themes/aura';
+import { provideHttpClient } from '@angular/common/http';
+import { TranslateModule } from '@ngx-translate/core';
+import { provideTranslateHttpLoader } from '@ngx-translate/http-loader';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -19,6 +22,7 @@ export const appConfig: ApplicationConfig = {
     provideBrowserGlobalErrorListeners(),
     provideZonelessChangeDetection(),
     provideRouter(routes),
+    provideHttpClient(),
     providePrimeNG({
       theme: {
         preset: Aura,
@@ -28,5 +32,10 @@ export const appConfig: ApplicationConfig = {
       },
     }),
     provideAnimationsAsync(),
+    importProvidersFrom([TranslateModule.forRoot()]),
+    provideTranslateHttpLoader({
+      prefix: './assets/i18n/',
+      suffix: '.json',
+    }),
   ],
 };
