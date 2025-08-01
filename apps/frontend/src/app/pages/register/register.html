@@ -1,1 +1,78 @@
-<p>register works!</p>
+<div class="container">
+  <div class="logo">
+    <img src="/assets/images/logo-devlinks-large.svg" alt="logo" />
+  </div>
+  @if (registerForm()) {
+  <div class="form">
+    <div class="form-title">
+      <h1>{{ "Register.Title" | translate }}</h1>
+      <p>{{ "Register.Description" | translate }}</p>
+    </div>
+    <form [formGroup]="registerForm()!">
+      <div class="form-group">
+        <label for="email">{{ "Register.EmailAddress" | translate }}</label>
+        <div class="icon-field">
+          <p-iconField iconPosition="left">
+            <p-inputicon class="pi pi-envelope" />
+            <input
+              type="text"
+              pInputText
+              placeholder="eg.alex@email.com"
+              formControlName="email"
+              style="width: 100%"
+            />
+          </p-iconField>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="password">{{
+          "Register.CreatePassword" | translate
+        }}</label>
+        <div class="icon-field">
+          <p-iconField iconPosition="left">
+            <p-inputicon class="pi pi-lock" />
+            <p-password
+              formControlName="password"
+              [toggleMask]="true"
+              [feedback]="false"
+              placeholder="{{ 'Register.CreatePassword' | translate }}"
+            ></p-password>
+          </p-iconField>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="confirmPassword">{{
+          "Register.ConfirmPassword" | translate
+        }}</label>
+        <div class="icon-field">
+          <p-iconField iconPosition="left">
+            <p-inputicon class="pi pi-lock" />
+            <p-password
+              formControlName="confirmPassword"
+              [toggleMask]="true"
+              [feedback]="false"
+              placeholder="{{ 'Register.ConfirmPassword' | translate }}"
+            ></p-password>
+          </p-iconField>
+        </div>
+      </div>
+    </form>
+    <div class="password-message">
+      {{ "Register.AtLeast8Characters" | translate }}
+    </div>
+    <button
+      pButton
+      type="button"
+      label="Register"
+      class="register-button"
+      [disabled]="registerForm()?.invalid!"
+    ></button>
+    <div class="form-footer">
+      <p>
+        {{ "Register.AlreadyHaveAnAccount" | translate }}
+        <a (click)="navigateToLogin()">{{ "Register.Login" | translate }}</a>
+      </p>
+    </div>
+  </div>
+  }
+</div>

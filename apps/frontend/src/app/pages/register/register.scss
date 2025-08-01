@@ -1,0 +1,98 @@
+@use "@link-sharing-app/shared-ui/src/variables" as *;
+
+.container {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 3rem;
+  .form {
+    width: 38%;
+    border-radius: 8px;
+    background-color: $color-white;
+    padding: 36px 24px 24px 24px;
+    .form-title {
+      h1 {
+        font-size: $font-size-heading-m;
+        font-weight: $font-weight-bold;
+        color: $color-dark;
+      }
+      p {
+        margin-top: 15px;
+        font-size: $font-size-body-m;
+        color: $color-gray;
+      }
+    }
+    @media (max-width: 1024px) {
+      width: 60%;
+    }
+    @media (max-width: 768px) {
+      width: 80%;
+    }
+    @media (max-width: 480px) {
+      width: 90%;
+    }
+    form {
+      margin-top: 40px;
+      .form-group {
+        margin-top: 30px;
+      }
+      label {
+        font-size: $font-size-body-m;
+        font-weight: $font-weight-medium;
+        color: $color-gray;
+        margin-top: 20px;
+      }
+      .icon-field {
+        margin-top: 10px;
+      }
+    }
+    .p-password {
+      width: 100%;
+    }
+    .register-button {
+      margin-top: 40px;
+      width: 100%;
+      height: 40px;
+      border: none;
+      border-radius: 8px;
+      background-color: $color-primary;
+      color: $color-white;
+      font-size: $font-size-body-m;
+      font-weight: $font-weight-medium;
+      cursor: pointer;
+    }
+    .form-forgot-password {
+      margin-top: 10px;
+      a {
+        color: $color-primary;
+        text-decoration: none;
+      }
+    }
+    .form-footer {
+      margin-top: 20px;
+      p {
+        font-size: $font-size-body-m;
+        color: $color-gray;
+        text-align: center;
+        a {
+          color: $color-primary;
+          text-decoration: none;
+          cursor: pointer;
+        }
+      }
+    }
+    .password-message {
+      margin-top: 2rem;
+      font-size: $font-size-body-s;
+      color: $color-gray;
+    }
+  }
+}
+
+:host ::ng-deep {
+  .p-password-input {
+    width: 100%;
+  }
+}

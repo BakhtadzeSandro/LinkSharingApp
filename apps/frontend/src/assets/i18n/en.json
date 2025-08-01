@@ -8,5 +8,15 @@
     "ForgotPassword": "Forgot password?",
     "DontHaveAnAccount": "Don't have an account?",
     "CreateAccount": "Create account"
+  },
+  "Register": {
+    "Title": "Create Account",
+    "Description": "Let's get you started sharing your links!",
+    "EmailAddress": "Email Address",
+    "CreatePassword": "Create Password",
+    "ConfirmPassword": "Confirm Password",
+    "AlreadyHaveAnAccount": "Already have an account?",
+    "Login": "Login",
+    "AtLeast8Characters": "Password must contain at least 8 characters"
   }
 }

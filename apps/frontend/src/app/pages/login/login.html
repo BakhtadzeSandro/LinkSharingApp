@@ -52,7 +52,9 @@
     <div class="form-footer">
       <p>
         {{ "Login.DontHaveAnAccount" | translate }}
-        <a href="#">{{ "Login.CreateAccount" | translate }}</a>
+        <a (click)="navigateToRegister()">{{
+          "Login.CreateAccount" | translate
+        }}</a>
       </p>
     </div>
   </div>

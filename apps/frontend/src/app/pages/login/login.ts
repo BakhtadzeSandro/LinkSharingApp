@@ -14,6 +14,7 @@ import { InputTextModule } from 'primeng/inputtext';
 import { ButtonModule } from 'primeng/button';
 import { PasswordModule } from 'primeng/password';
 import { TranslateModule } from '@ngx-translate/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -34,7 +35,7 @@ import { TranslateModule } from '@ngx-translate/core';
 })
 export class Login {
   loginForm = signal<FormGroup<LoginForm> | undefined>(undefined);
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder, private router: Router) {}
 
   buildForm() {
     const fb = this.fb.nonNullable;
@@ -49,6 +50,10 @@ export class Login {
     });
 
     this.loginForm.set(form);
+  }
+
+  navigateToRegister() {
+    this.router.navigate(['/register']);
   }
 
   ngOnInit() {
