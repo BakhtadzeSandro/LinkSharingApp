@@ -76,7 +76,7 @@ export class Register {
         password: formValue.password,
       };
       this.authService.register(payload).subscribe((res: any) => {
-        console.log(res, 'frontend');
+        next: () => this.router.navigate(['/login']);
       });
     }
   }

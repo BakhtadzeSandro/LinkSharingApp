@@ -45,6 +45,7 @@
       label="Login"
       class="login-button"
       [disabled]="loginForm()?.invalid!"
+      (click)="login()"
     ></button>
     <div class="form-forgot-password">
       <a href="#">{{ "Login.ForgotPassword" | translate }}</a>

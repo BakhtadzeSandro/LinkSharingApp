@@ -15,6 +15,7 @@ import { ButtonModule } from 'primeng/button';
 import { PasswordModule } from 'primeng/password';
 import { TranslateModule } from '@ngx-translate/core';
 import { Router } from '@angular/router';
+import { Auth } from '@app/services/auth';
 
 @Component({
   selector: 'app-login',
@@ -35,7 +36,11 @@ import { Router } from '@angular/router';
 })
 export class Login {
   loginForm = signal<FormGroup<LoginForm> | undefined>(undefined);
-  constructor(private fb: FormBuilder, private router: Router) {}
+  constructor(
+    private fb: FormBuilder,
+    private router: Router,
+    private authService: Auth
+  ) {}
 
   buildForm() {
     const fb = this.fb.nonNullable;
@@ -50,6 +55,17 @@ export class Login {
     });
 
     this.loginForm.set(form);
+  }
+
+  login() {
+    const formValue = this.loginForm()?.value;
+    if (formValue?.email && formValue?.password) {
+      const payload = {
+        email: formValue.email,
+        password: formValue.password,
+      };
+      this.authService.login(payload).subscribe((res) => console.log(res));
+    }
   }
 
   navigateToRegister() {
