@@ -5,9 +5,10 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "build:shared": "pnpm --filter shared build",
     "start:frontend": "pnpm --filter frontend start",
     "start:backend": "pnpm --filter backend start:dev",
-    "start": "concurrently \"pnpm run start:frontend\" \"pnpm run start:backend\""
+    "start": "concurrently \"pnpm run build:shared\" \"pnpm run start:frontend\" \"pnpm run start:backend\""
   },
   "keywords": [],
   "author": "",
