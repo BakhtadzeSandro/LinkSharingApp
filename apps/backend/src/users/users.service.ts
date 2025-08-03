@@ -1,5 +1,5 @@
 import { RegisterDto } from '@link-sharing-app/shared';
-import { Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { User, UserSchema } from './users.model';
@@ -16,8 +16,15 @@ export class UsersService {
       email: userEmail,
       password: userPassword,
     });
+    try {
+      return await user.save();
+    } catch (err) {
+      if (err.name === 'ValidationError') {
+        const messages = Object.values(err.errors).map((e: any) => e.message);
+        throw new BadRequestException(messages.join(' '));
+      }
 
-    const userCreated = await user.save();
-    return userCreated;
+      throw err;
+    }
   }
 }
