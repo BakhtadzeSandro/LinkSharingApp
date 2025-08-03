@@ -17,6 +17,7 @@ import { PasswordModule } from 'primeng/password';
 import { TranslateModule } from '@ngx-translate/core';
 import { Router } from '@angular/router';
 import { Auth } from '@app/services/auth';
+import { Alert } from '@app/services/alert';
 
 @Component({
   selector: 'app-register',
@@ -39,7 +40,8 @@ export class Register {
   constructor(
     private fb: FormBuilder,
     private router: Router,
-    private authService: Auth
+    private authService: Auth,
+    private alertService: Alert
   ) {}
 
   buildForm() {
@@ -76,7 +78,8 @@ export class Register {
         password: formValue.password,
       };
       this.authService.register(payload).subscribe((res: any) => {
-        next: () => this.router.navigate(['/login']);
+        this.alertService.success('AlertMessages.UserCreated');
+        this.router.navigate(['/login']);
       });
     }
   }

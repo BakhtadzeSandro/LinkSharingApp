@@ -11,7 +11,7 @@ export function loadingInterceptor(
   loadingService.start();
 
   return next(request).pipe(
-    delay(2000),
+    // delay(2000),
     finalize(() => loadingService.stop())
   );
 }

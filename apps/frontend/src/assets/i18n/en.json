@@ -18,5 +18,15 @@
     "AlreadyHaveAnAccount": "Already have an account?",
     "Login": "Login",
     "AtLeast8Characters": "Password must contain at least 8 characters"
+  },
+  "ErrorMessages": {
+    "IncorrectEmailOrPassword": "Incorrect email or password",
+    "UniqueValidationError": "User already exists"
+  },
+  "AlertMessages": {
+    "Success": "Success",
+    "UserNotFound": "User not found",
+    "Error": "Error",
+    "UserCreated": "User created successfully"
   }
 }
