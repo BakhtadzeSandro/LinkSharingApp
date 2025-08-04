@@ -64,7 +64,12 @@ export class Login {
         email: formValue.email,
         password: formValue.password,
       };
-      this.authService.login(payload).subscribe((res) => console.log(res));
+      this.authService.login(payload).subscribe((res: { token: string }) => {
+        if (res) {
+          localStorage.setItem('token', res.token);
+          this.router.navigate(['/main']);
+        }
+      });
     }
   }
 

@@ -15,8 +15,8 @@ import Aura from '@primeuix/themes/aura';
 import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { TranslateModule } from '@ngx-translate/core';
 import { provideTranslateHttpLoader } from '@ngx-translate/http-loader';
-import { loadingInterceptor } from './interceptors/loading.interceptor';
-import { errorInterceptor } from './interceptors/error.interceptor';
+import { loadingInterceptor } from './interceptors/loading';
+import { errorInterceptor } from './interceptors/error';
 
 export const appConfig: ApplicationConfig = {
   providers: [

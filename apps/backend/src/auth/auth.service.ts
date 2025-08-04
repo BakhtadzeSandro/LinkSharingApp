@@ -23,7 +23,8 @@ export class AuthService {
       password: userPassword,
     });
     try {
-      return await user.save();
+      const savedUser = await user.save();
+      return !!savedUser;
     } catch (err) {
       if (err.name === 'ValidationError') {
         const messages = Object.values(err.errors).map((e: any) => e.message);
