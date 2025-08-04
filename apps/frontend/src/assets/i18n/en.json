@@ -28,5 +28,10 @@
     "UserNotFound": "User not found",
     "Error": "Error",
     "UserCreated": "User created successfully"
+  },
+  "Header": {
+    "Links": "Links",
+    "ProfileDetails": "Profile Details",
+    "Preview": "Preview"
   }
 }

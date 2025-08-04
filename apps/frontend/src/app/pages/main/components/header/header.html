@@ -1,1 +1,36 @@
-<p>header works!</p>
+<div class="header-container">
+  <div class="logo">
+    <img src="/assets/images/logo-devlinks-large.svg" alt="logo" />
+  </div>
+  <div class="actions">
+    <div class="links">
+      <div
+        class="link-item"
+        [class.selected]="selectedHeaderItem() === HeaderItem.LINKS"
+        (click)="changeTab(HeaderItem.LINKS)"
+      >
+        <i class="pi pi-link"></i>
+        <div>{{ "Header.Links" | translate }}</div>
+      </div>
+      <div
+        class="link-item"
+        [class.selected]="selectedHeaderItem() === HeaderItem.PROFILE_DETAILS"
+        (click)="changeTab(HeaderItem.PROFILE_DETAILS)"
+      >
+        <i class="pi pi-user"></i>
+        <div>{{ "Header.ProfileDetails" | translate }}</div>
+      </div>
+    </div>
+  </div>
+  <div class="preview-logout">
+    <button
+      pButton
+      type="button"
+      [label]="'Header.Preview' | translate"
+      class="preview-button"
+    ></button>
+    <div class="logout" (click)="logout()">
+      <i class="pi pi-sign-out"></i>
+    </div>
+  </div>
+</div>

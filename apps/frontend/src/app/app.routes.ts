@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router';
+import { mainRoutes } from './pages/main/main.routes';
 
 export const routes: Routes = [
   {
@@ -15,8 +16,5 @@ export const routes: Routes = [
     loadComponent: () =>
       import('./pages/register/register').then((m) => m.Register),
   },
-  {
-    path: 'main',
-    loadComponent: () => import('./pages/main/main').then((m) => m.Main),
-  },
+  ...mainRoutes,
 ];

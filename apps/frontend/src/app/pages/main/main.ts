@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
+import { Header, LinksBuilder, Preview, ProfileDetails } from './components';
+import { RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-main',
-  imports: [],
+  imports: [Header, Preview, LinksBuilder, ProfileDetails, RouterOutlet],
   templateUrl: './main.html',
   styleUrl: './main.scss',
   standalone: true,

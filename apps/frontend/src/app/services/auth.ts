@@ -3,12 +3,13 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { AuthDto } from '@link-sharing-app/shared';
 import { Observable } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
 })
 export class Auth {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private router: Router) {}
 
   register(registerDto: AuthDto) {
     return this.http.post(`${environment.apiUrl}/auth/register`, registerDto);
@@ -19,5 +20,10 @@ export class Auth {
       `${environment.apiUrl}/auth/login`,
       loginDto
     );
+  }
+
+  logout() {
+    localStorage.removeItem('token');
+    this.router.navigate(['/login']);
   }
 }

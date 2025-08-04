@@ -1,0 +1,12 @@
+.main-container {
+  padding: 36px;
+  .main-content {
+    display: flex;
+    .preview {
+      width: 40%;
+    }
+    .floating-content {
+      width: 60%;
+    }
+  }
+}
