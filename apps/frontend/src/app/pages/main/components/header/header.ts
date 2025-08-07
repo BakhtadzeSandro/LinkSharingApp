@@ -3,7 +3,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { ButtonModule } from 'primeng/button';
 import { HeaderItem } from './header.model';
 import { Auth } from '@app/services/auth';
-import { Router } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -15,7 +15,11 @@ export class Header {
   selectedHeaderItem = signal<HeaderItem>(HeaderItem.LINKS);
 
   HeaderItem = HeaderItem;
-  constructor(private authService: Auth, private router: Router) {}
+  constructor(
+    private authService: Auth,
+    private router: Router,
+    private activatedRoute: ActivatedRoute
+  ) {}
 
   changeTab(tab: HeaderItem) {
     this.selectedHeaderItem.set(tab);
@@ -33,5 +37,13 @@ export class Header {
 
   logout() {
     this.authService.logout();
+  }
+
+  ngOnInit() {
+    const url = this.activatedRoute.snapshot.children;
+    const path = url[0].url[0].path;
+    this.selectedHeaderItem.set(
+      path === 'links' ? HeaderItem.LINKS : HeaderItem.PROFILE_DETAILS
+    );
   }
 }

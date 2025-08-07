@@ -1,1 +1,20 @@
-<p>links-builder works!</p>
+<div class="links-builder-container">
+  <div class="links-builder-header">
+    <h1>{{ "LinksBuilder.Title" | translate }}</h1>
+    <p>{{ "LinksBuilder.Subtitle" | translate }}</p>
+    <button
+      icon="pi pi-plus"
+      pButton
+      type="button"
+      [label]="'LinksBuilder.AddNewLink' | translate"
+      class="add-new-button"
+    ></button>
+  </div>
+  <div class="floating-content">
+    @if (isEmpty) {
+    <div class="empty-state">
+      <app-empty-links></app-empty-links>
+    </div>
+    }
+  </div>
+</div>

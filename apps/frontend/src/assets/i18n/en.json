@@ -1,4 +1,7 @@
 {
+  "Common": {
+    "Save": "Save"
+  },
   "Login": {
     "Title": "Login",
     "Description": "Add your details below to get back into the app",
@@ -33,5 +36,12 @@
     "Links": "Links",
     "ProfileDetails": "Profile Details",
     "Preview": "Preview"
+  },
+  "LinksBuilder": {
+    "Title": "Customize your links",
+    "Subtitle": "Add/edit/remove links below and then share all your profiles in the world!",
+    "AddNewLink": "Add New Link",
+    "GetStarted": "Let's get you started",
+    "UseAddButton": "Use the 'Add New Button' to get started. Once you have more than one link, you can reorder and edit them. We're here to help you share your profiles with everyone!"
   }
 }

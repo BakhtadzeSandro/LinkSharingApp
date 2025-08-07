@@ -1,0 +1,43 @@
+@use "@link-sharing-app/shared-ui/src/variables" as *;
+
+.links-builder-container {
+  padding: 40px 32px;
+  height: 100%;
+  background-color: $color-white;
+  border-radius: 16px;
+  .links-builder-header {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    h1 {
+      font-size: $font-size-heading-m;
+      font-weight: $font-weight-bold;
+      color: $color-dark;
+    }
+    p {
+      font-size: $font-size-body-m;
+      color: $color-gray;
+    }
+    .add-new-button {
+      margin-top: 24px;
+      width: 100%;
+      padding: 12px 24px;
+      border: 1px solid $color-primary;
+      border-radius: 8px;
+      background-color: $color-white;
+      color: $color-primary;
+      font-size: $font-size-body-m;
+      font-weight: $font-weight-medium;
+      cursor: pointer;
+      &:hover {
+        background-color: $color-primary-light;
+        color: $color-primary;
+      }
+    }
+  }
+  .floating-content {
+    .empty-state {
+      margin-top: 36px;
+    }
+  }
+}

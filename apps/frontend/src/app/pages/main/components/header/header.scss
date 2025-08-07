@@ -19,6 +19,9 @@
         font-size: $font-size-body-m;
         font-weight: $font-weight-medium;
         cursor: pointer;
+        &:hover {
+          color: $color-primary;
+        }
         &.selected {
           color: $color-primary;
           font-weight: $font-weight-bold;
@@ -45,6 +48,9 @@
       font-size: $font-size-body-m;
       font-weight: $font-weight-medium;
       cursor: pointer;
+      &:hover {
+        background-color: $color-primary-light;
+      }
     }
     .logout {
       i {
