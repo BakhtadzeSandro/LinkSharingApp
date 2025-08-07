@@ -6,9 +6,12 @@
   align-items: center;
   flex-direction: column;
   height: 100%;
+  min-height: 100%;
   padding: 50px 20px 50px 30px;
   background-color: $color-gray-very-light;
   border-radius: 16px;
+  box-sizing: border-box;
+
   .get-started {
     font-size: $font-size-heading-m;
     font-weight: $font-weight-bold;
@@ -20,5 +23,6 @@
     color: $color-gray;
     margin-top: 24px;
     width: 65%;
+    text-align: center;
   }
 }
