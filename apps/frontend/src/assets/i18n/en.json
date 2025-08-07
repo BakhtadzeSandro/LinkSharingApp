@@ -43,5 +43,15 @@
     "AddNewLink": "Add New Link",
     "GetStarted": "Let's get you started",
     "UseAddButton": "Use the 'Add New Button' to get started. Once you have more than one link, you can reorder and edit them. We're here to help you share your profiles with everyone!"
+  },
+  "ProfileDetails": {
+    "Title": "Profile Details",
+    "Subtitle": "Add your details to create a personal touch to your profile",
+    "FirstName": "First Name",
+    "LastName": "Last Name",
+    "Email": "Email",
+    "ProfilePicture": "Profile Picture",
+    "UploadImage": "Upload Image",
+    "FormatsAvailable": "Use PNG or JPG formats"
   }
 }

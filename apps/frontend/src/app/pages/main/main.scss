@@ -2,14 +2,14 @@
   padding: 36px;
   .main-content {
     display: flex;
-    height: 85vh;
+    min-height: 85vh;
     margin-top: 36px;
     .preview {
       width: 40%;
     }
     .floating-content {
       width: 60%;
-      height: 100%;
+      min-height: 100%;
     }
   }
 }
