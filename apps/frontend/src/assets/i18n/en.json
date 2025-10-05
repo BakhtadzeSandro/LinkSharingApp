@@ -52,6 +52,11 @@
     "Email": "Email",
     "ProfilePicture": "Profile Picture",
     "UploadImage": "Upload Image",
-    "FormatsAvailable": "Use PNG or JPG formats"
+    "FormatsAvailable": "Use PNG or JPG formats",
+    "Uploading": "Uploading...",
+    "ChangeImage": "Change Image",
+    "InvalidFileType": "Please upload a valid image file (JPG, PNG, GIF, BMP, or WebP)",
+    "FileSizeExceeded": "Image must be less than 32MB",
+    "UploadFailed": "Failed to upload image. Please try again."
   }
 }

@@ -9,16 +9,61 @@
         <div class="label-text">
           {{ "ProfileDetails.ProfilePicture" | translate }}
         </div>
-        <div class="upload-button">
-          <i class="pi pi-image image-icon"></i>
-          <div class="text">
-            <i class="pi pi-plus"></i>
-            <div>{{ "ProfileDetails.UploadImage" | translate }}</div>
+
+        <input
+          #fileInput
+          type="file"
+          accept="image/jpeg,image/jpg,image/png,image/gif,image/bmp,image/webp"
+          (change)="onFileSelected($event)"
+          style="display: none"
+        />
+
+        <div class="upload-area">
+          @if (isUploading()) {
+          <div class="upload-button uploading">
+            <i class="pi pi-spin pi-spinner"></i>
+            <div class="text">
+              <span>{{ "ProfileDetails.Uploading" | translate }}</span>
+            </div>
+          </div>
+          } @else if (profileImage()) {
+          <div class="image-preview">
+            <img [src]="profileImage()" alt="Profile preview" />
+            <div class="image-overlay" (click)="triggerFileInput()">
+              <i class="pi pi-image"></i>
+              <span>{{ "ProfileDetails.ChangeImage" | translate }}</span>
+            </div>
+            <button
+              type="button"
+              class="remove-image"
+              (click)="removeImage()"
+              title="Remove image"
+            >
+              <i class="pi pi-times"></i>
+            </button>
+          </div>
+          } @else {
+          <div class="upload-button" (click)="triggerFileInput()">
+            <i class="pi pi-image image-icon"></i>
+            <div class="text">
+              <i class="pi pi-plus"></i>
+              <div>{{ "ProfileDetails.UploadImage" | translate }}</div>
+            </div>
+          </div>
+          }
+        </div>
+
+        <div class="formats-container">
+          <div class="formats">
+            {{ "ProfileDetails.FormatsAvailable" | translate }}
           </div>
         </div>
-        <div class="formats">
-          {{ "ProfileDetails.FormatsAvailable" | translate }}
+        @if (uploadError()) {
+        <div class="upload-error">
+          <i class="pi pi-exclamation-circle"></i>
+          {{ uploadError() }}
         </div>
+        }
       </div>
       <div class="inputs">
         <div class="form-group">
@@ -44,5 +89,15 @@
         </div>
       </div>
     </form>
+  </div>
+
+  <div class="form-footer">
+    <button
+      pButton
+      type="button"
+      [label]="'Common.Save' | translate"
+      class="save-button"
+      (click)="saveProfile()"
+    ></button>
   </div>
 </div>
