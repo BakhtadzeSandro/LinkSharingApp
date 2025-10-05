@@ -1,5 +1,6 @@
 import { Component, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { PreviewService } from '@app/services/preview';
 
 export interface Link {
   id: string;
@@ -24,10 +25,16 @@ export class Preview {
 
   links = signal<Link[]>([]);
 
-  get fullName(): string {
+  get fullName() {
     const first = this.firstName();
     const last = this.lastName();
     if (!first && !last) return '';
     return `${first} ${last}`.trim();
   }
+
+  get previewValue() {
+    return this.previewService.preview();
+  }
+
+  constructor(private previewService: PreviewService) {}
 }

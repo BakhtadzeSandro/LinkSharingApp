@@ -1,7 +1,7 @@
 import { HttpEvent, HttpHandlerFn, HttpRequest } from '@angular/common/http';
 import { inject } from '@angular/core';
 import { delay, finalize, Observable } from 'rxjs';
-import { LoadingService } from '@app/services/loading.service';
+import { LoadingService } from '@app/services/loading';
 
 export function loadingInterceptor(
   request: HttpRequest<unknown>,

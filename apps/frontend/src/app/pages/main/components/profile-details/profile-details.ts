@@ -1,10 +1,25 @@
-import { Component, signal, ViewChild, ElementRef } from '@angular/core';
+import {
+  Component,
+  signal,
+  ViewChild,
+  ElementRef,
+  OnInit,
+} from '@angular/core';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {
+  FormBuilder,
+  FormGroup,
+  FormsModule,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import { InputTextModule } from 'primeng/inputtext';
 import { ButtonModule } from 'primeng/button';
 import { CommonModule } from '@angular/common';
 import { ImageUploadService } from '@app/services/image-upload';
+import { ProfileDetailsForm } from './profile-details.model';
+import { debounceTime, distinctUntilChanged } from 'rxjs';
+import { PreviewService } from '@app/services/preview';
 
 @Component({
   selector: 'app-profile-details',
@@ -20,12 +35,16 @@ import { ImageUploadService } from '@app/services/image-upload';
   styleUrl: './profile-details.scss',
   standalone: true,
 })
-export class ProfileDetails {
+export class ProfileDetails implements OnInit {
   @ViewChild('fileInput') fileInput!: ElementRef<HTMLInputElement>;
 
   profileImage = signal<string | null>(null);
   uploadError = signal<string | null>(null);
   isUploading = signal<boolean>(false);
+
+  profileDetailsForm = signal<FormGroup<ProfileDetailsForm> | undefined>(
+    undefined
+  );
 
   private readonly MAX_FILE_SIZE = 32 * 1024 * 1024;
 
@@ -40,14 +59,16 @@ export class ProfileDetails {
 
   constructor(
     private imageUploadService: ImageUploadService,
-    private translate: TranslateService
+    private translate: TranslateService,
+    private fb: FormBuilder,
+    private previewService: PreviewService
   ) {}
 
-  triggerFileInput(): void {
+  triggerFileInput() {
     this.fileInput.nativeElement.click();
   }
 
-  onFileSelected(event: Event): void {
+  onFileSelected(event: Event) {
     const input = event.target as HTMLInputElement;
 
     if (!input.files || input.files.length === 0) {
@@ -74,13 +95,20 @@ export class ProfileDetails {
     this.uploadToImgBB(file);
   }
 
-  private uploadToImgBB(file: File): void {
+  private uploadToImgBB(file: File) {
     this.isUploading.set(true);
     this.uploadError.set(null);
 
     this.imageUploadService.uploadImage(file).subscribe({
       next: (imageUrl: string) => {
         this.profileImage.set(imageUrl);
+        const currentPreviewValue = this.previewService.preview();
+        if (currentPreviewValue) {
+          this.previewService.preview.set({
+            ...currentPreviewValue,
+            profileImage: imageUrl,
+          });
+        }
         this.isUploading.set(false);
       },
       error: (error) => {
@@ -93,8 +121,15 @@ export class ProfileDetails {
     });
   }
 
-  removeImage(): void {
+  removeImage() {
     this.profileImage.set(null);
+    const currentPreviewValue = this.previewService.preview();
+    if (currentPreviewValue) {
+      this.previewService.preview.set({
+        ...currentPreviewValue,
+        profileImage: null,
+      });
+    }
     this.uploadError.set(null);
     this.isUploading.set(false);
     if (this.fileInput) {
@@ -102,9 +137,46 @@ export class ProfileDetails {
     }
   }
 
-  saveProfile(): void {
+  saveProfile() {
     // TODO: Implement profile save functionality
     console.log('Save profile clicked');
     console.log('Profile Image:', this.profileImage());
+  }
+
+  buildForm() {
+    const fb = this.fb.nonNullable;
+    const profileDetailsForm = fb.group<ProfileDetailsForm>({
+      firstName: fb.control<string | null | undefined>(undefined, [
+        Validators.required,
+      ]),
+      lastName: fb.control<string | null | undefined>(undefined, [
+        Validators.required,
+      ]),
+      email: fb.control<string | null | undefined>(undefined, [
+        Validators.required,
+        Validators.email,
+      ]),
+      profileImage: fb.control<string | null | undefined>(undefined),
+    });
+    this.profileDetailsForm.set(profileDetailsForm);
+  }
+
+  listenToFormChanges() {
+    this.profileDetailsForm()
+      ?.valueChanges.pipe(debounceTime(500), distinctUntilChanged())
+      .subscribe((value) => {
+        const previewValue = {
+          firstName: value.firstName,
+          lastName: value.lastName,
+          email: value.email,
+          profileImage: this.profileImage(),
+        };
+        this.previewService.preview.set(previewValue);
+      });
+  }
+
+  ngOnInit(): void {
+    this.buildForm();
+    this.listenToFormChanges();
   }
 }

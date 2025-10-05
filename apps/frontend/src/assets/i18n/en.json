@@ -57,6 +57,7 @@
     "ChangeImage": "Change Image",
     "InvalidFileType": "Please upload a valid image file (JPG, PNG, GIF, BMP, or WebP)",
     "FileSizeExceeded": "Image must be less than 32MB",
-    "UploadFailed": "Failed to upload image. Please try again."
+    "UploadFailed": "Failed to upload image. Please try again.",
+    "Save": "Save"
   }
 }

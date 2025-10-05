@@ -16,4 +16,8 @@ export class LinksBuilder {
   }
 
   constructor() {}
+
+  saveLinks() {
+    console.log('saveLinks');
+  }
 }

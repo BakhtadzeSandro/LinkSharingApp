@@ -5,20 +5,22 @@
       <div class="phone-content">
         <div class="profile-section">
           <div class="profile-picture">
-            @if (profilePicture()) {
-            <img [src]="profilePicture()" alt="Profile" />
+            @if (previewValue?.profileImage) {
+            <img [src]="previewValue?.profileImage" alt="Profile" />
             } @else {
             <div class="profile-placeholder"></div>
             }
           </div>
 
           <div class="profile-info">
-            @if (fullName) {
-            <div class="profile-name">{{ fullName }}</div>
+            @if (previewValue?.firstName && previewValue?.lastName) {
+            <div class="profile-name">
+              {{ previewValue?.firstName }} {{ previewValue?.lastName }}
+            </div>
             } @else {
             <div class="profile-name-placeholder skeleton"></div>
-            } @if (email()) {
-            <div class="profile-email">{{ email() }}</div>
+            } @if (previewValue?.email) {
+            <div class="profile-email">{{ previewValue?.email }}</div>
             } @else {
             <div class="profile-email-placeholder skeleton"></div>
             }
