@@ -20,6 +20,8 @@ import { ImageUploadService } from '@app/services/image-upload';
 import { ProfileDetailsForm } from './profile-details.model';
 import { debounceTime, distinctUntilChanged } from 'rxjs';
 import { PreviewService } from '@app/services/preview';
+import { ProfileDetailsService } from '@app/services/profile-details';
+import { ProfileDetailsDto } from '@link-sharing-app/shared';
 
 @Component({
   selector: 'app-profile-details',
@@ -61,7 +63,8 @@ export class ProfileDetails implements OnInit {
     private imageUploadService: ImageUploadService,
     private translate: TranslateService,
     private fb: FormBuilder,
-    private previewService: PreviewService
+    private previewService: PreviewService,
+    private profileDetailsService: ProfileDetailsService
   ) {}
 
   triggerFileInput() {
@@ -103,12 +106,11 @@ export class ProfileDetails implements OnInit {
       next: (imageUrl: string) => {
         this.profileImage.set(imageUrl);
         const currentPreviewValue = this.previewService.preview();
-        if (currentPreviewValue) {
-          this.previewService.preview.set({
-            ...currentPreviewValue,
-            profileImage: imageUrl,
-          });
-        }
+        this.previewService.preview.set({
+          ...currentPreviewValue,
+          profileImage: imageUrl,
+        });
+
         this.isUploading.set(false);
       },
       error: (error) => {
@@ -138,25 +140,34 @@ export class ProfileDetails implements OnInit {
   }
 
   saveProfile() {
-    // TODO: Implement profile save functionality
-    console.log('Save profile clicked');
-    console.log('Profile Image:', this.profileImage());
+    if (this.profileDetailsForm()?.invalid) {
+      return;
+    }
+    const profileDetailsPayload: ProfileDetailsDto = {
+      firstName: this.profileDetailsForm()?.value.firstName!,
+      lastName: this.profileDetailsForm()?.value.lastName!,
+      email: this.profileDetailsForm()?.value.email!,
+      profileImage: this.profileDetailsForm()?.value.profileImage,
+    };
+    this.profileDetailsService
+      .updateProfileDetails(profileDetailsPayload)
+      .subscribe((val) => console.log(val));
   }
 
   buildForm() {
     const fb = this.fb.nonNullable;
     const profileDetailsForm = fb.group<ProfileDetailsForm>({
-      firstName: fb.control<string | null | undefined>(undefined, [
+      firstName: fb.control<string | undefined>(undefined, [
         Validators.required,
       ]),
-      lastName: fb.control<string | null | undefined>(undefined, [
+      lastName: fb.control<string | undefined>(undefined, [
         Validators.required,
       ]),
-      email: fb.control<string | null | undefined>(undefined, [
+      email: fb.control<string | undefined>(undefined, [
         Validators.required,
         Validators.email,
       ]),
-      profileImage: fb.control<string | null | undefined>(undefined),
+      profileImage: fb.control<string | undefined>(undefined),
     });
     this.profileDetailsForm.set(profileDetailsForm);
   }

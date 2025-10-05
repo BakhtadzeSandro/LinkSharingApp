@@ -1,8 +1,8 @@
 import { FormControl } from '@angular/forms';
 
 export interface ProfileDetailsForm {
-  firstName: FormControl<string | null | undefined>;
-  lastName: FormControl<string | null | undefined>;
-  email: FormControl<string | null | undefined>;
+  firstName: FormControl<string | undefined>;
+  lastName: FormControl<string | undefined>;
+  email: FormControl<string | undefined>;
   profileImage: FormControl<string | null | undefined>;
 }
