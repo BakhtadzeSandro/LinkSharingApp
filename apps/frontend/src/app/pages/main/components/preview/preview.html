@@ -1,1 +1,54 @@
-<p>preview works!</p>
+<div class="preview-container">
+  <div class="phone-mockup">
+    <div class="phone-frame">
+      <div class="phone-notch"></div>
+      <div class="phone-content">
+        <div class="profile-section">
+          <div class="profile-picture">
+            @if (profilePicture()) {
+            <img [src]="profilePicture()" alt="Profile" />
+            } @else {
+            <div class="profile-placeholder"></div>
+            }
+          </div>
+
+          <div class="profile-info">
+            @if (fullName) {
+            <div class="profile-name">{{ fullName }}</div>
+            } @else {
+            <div class="profile-name-placeholder skeleton"></div>
+            } @if (email()) {
+            <div class="profile-email">{{ email() }}</div>
+            } @else {
+            <div class="profile-email-placeholder skeleton"></div>
+            }
+          </div>
+        </div>
+
+        <div class="links-section">
+          @if (links().length > 0) { @for (link of links(); track link.id) {
+          <a
+            [href]="link.url"
+            class="link-item"
+            [style.background-color]="link.color"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <div class="link-content">
+              <i [class]="'pi ' + link.icon"></i>
+              <span>{{ link.platform }}</span>
+            </div>
+            <i class="pi pi-arrow-right"></i>
+          </a>
+          } } @else {
+          <div class="empty-links">
+            @for (i of [1, 2, 3, 4, 5]; track i) {
+            <div class="link-placeholder skeleton"></div>
+            }
+          </div>
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
