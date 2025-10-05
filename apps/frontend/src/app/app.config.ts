@@ -17,6 +17,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { provideTranslateHttpLoader } from '@ngx-translate/http-loader';
 import { loadingInterceptor } from './interceptors/loading';
 import { errorInterceptor } from './interceptors/error';
+import { authInterceptor } from './interceptors/token';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -24,7 +25,9 @@ export const appConfig: ApplicationConfig = {
     provideBrowserGlobalErrorListeners(),
     provideZonelessChangeDetection(),
     provideRouter(routes),
-    provideHttpClient(withInterceptors([loadingInterceptor, errorInterceptor])),
+    provideHttpClient(
+      withInterceptors([authInterceptor, loadingInterceptor, errorInterceptor])
+    ),
     providePrimeNG({
       theme: {
         preset: Aura,
