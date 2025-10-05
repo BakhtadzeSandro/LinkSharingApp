@@ -47,7 +47,7 @@ export class AuthService {
     if (!isPasswordValid) {
       throw new BadRequestException('ErrorMessages.IncorrectEmailOrPassword');
     }
-    const payload = { email: user.email };
+    const payload = { userId: user._id, email: user.email };
 
     const token = await this.jwtService.signAsync(payload, {
       secret: this.configService.get<string>('JWT_SECRET'),
