@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpContext, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { ImgBBResponse } from '@link-sharing-app/shared';
+import { SKIP_AUTH_TOKEN } from '../interceptors/token';
 
 @Injectable({
   providedIn: 'root',
@@ -26,7 +27,10 @@ export class ImageUploadService {
     const params = new HttpParams().set('key', environment.imgbbApiKey);
 
     return this.http
-      .post<ImgBBResponse>(this.IMGBB_API_URL, formData, { params })
+      .post<ImgBBResponse>(this.IMGBB_API_URL, formData, {
+        context: new HttpContext().set(SKIP_AUTH_TOKEN, true),
+        params,
+      })
       .pipe(
         map((response) => {
           if (response.success) {
