@@ -21,7 +21,7 @@ import { ProfileDetailsForm } from './profile-details.model';
 import { debounceTime, distinctUntilChanged } from 'rxjs';
 import { PreviewService } from '@app/services/preview';
 import { ProfileDetailsService } from '@app/services/profile-details';
-import { ProfileDetailsDto } from '@link-sharing-app/shared';
+import { ImgBBResponse, ProfileDetailsDto } from '@link-sharing-app/shared';
 
 @Component({
   selector: 'app-profile-details',
@@ -101,14 +101,13 @@ export class ProfileDetails implements OnInit {
   private uploadToImgBB(file: File) {
     this.isUploading.set(true);
     this.uploadError.set(null);
-
     this.imageUploadService.uploadImage(file).subscribe({
-      next: (imageUrl: string) => {
-        this.profileImage.set(imageUrl);
+      next: (imageUrl: ImgBBResponse) => {
+        this.profileImage.set(imageUrl.data.url);
         const currentPreviewValue = this.previewService.preview();
         this.previewService.preview.set({
           ...currentPreviewValue,
-          profileImage: imageUrl,
+          profileImage: imageUrl.data.url,
         });
 
         this.isUploading.set(false);
@@ -147,7 +146,8 @@ export class ProfileDetails implements OnInit {
       firstName: this.profileDetailsForm()?.value.firstName!,
       lastName: this.profileDetailsForm()?.value.lastName!,
       email: this.profileDetailsForm()?.value.email!,
-      profileImage: this.profileDetailsForm()?.value.profileImage,
+      // TODO: change this line
+      profileImage: this.profileDetailsForm()?.value.profileImage!,
     };
     this.profileDetailsService
       .updateProfileDetails(profileDetailsPayload)

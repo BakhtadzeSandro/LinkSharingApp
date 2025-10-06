@@ -1,22 +1,17 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpContext, HttpParams } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { ImgBBResponse } from '@link-sharing-app/shared';
-import { SKIP_AUTH_TOKEN } from '../interceptors/token';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ImageUploadService {
-  private readonly IMGBB_API_URL = 'https://api.imgbb.com/1/upload';
-
   constructor(private http: HttpClient) {}
 
-  uploadImage(imageFile: File | string): Observable<string> {
+  uploadImage(imageFile: File | string): Observable<ImgBBResponse> {
     const formData = new FormData();
-
     if (typeof imageFile === 'string') {
       const base64Data = imageFile.split(',')[1] || imageFile;
       formData.append('image', base64Data);
@@ -24,20 +19,9 @@ export class ImageUploadService {
       formData.append('image', imageFile);
     }
 
-    const params = new HttpParams().set('key', environment.imgbbApiKey);
-
-    return this.http
-      .post<ImgBBResponse>(this.IMGBB_API_URL, formData, {
-        context: new HttpContext().set(SKIP_AUTH_TOKEN, true),
-        params,
-      })
-      .pipe(
-        map((response) => {
-          if (response.success) {
-            return response.data.display_url;
-          }
-          throw new Error('Image upload failed');
-        })
-      );
+    return this.http.post<ImgBBResponse>(
+      `${environment.apiUrl}/image-uploader`,
+      formData
+    );
   }
 }

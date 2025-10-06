@@ -9,6 +9,7 @@ import { JwtAuthGuard } from './guards/auth.guard';
 import { JwtService } from '@nestjs/jwt';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { ProfileDetailsModule } from './profile-details/profile-details.module';
+import { ImageUploaderModule } from './image-uploader/image-uploader.module';
 
 @Module({
   imports: [
@@ -21,6 +22,7 @@ import { ProfileDetailsModule } from './profile-details/profile-details.module';
     AuthModule,
     UsersModule,
     ProfileDetailsModule,
+    ImageUploaderModule,
   ],
   controllers: [AppController],
   providers: [
