@@ -17,7 +17,8 @@
     "module": "preserve",
     "baseUrl": "./",
     "paths": {
-      "@app/services/*": ["src/app/services/*"]
+      "@app/services/*": ["src/app/services/*"],
+      "@app/guards/*": ["src/app/guards/*"]
     }
   },
   "angularCompilerOptions": {
