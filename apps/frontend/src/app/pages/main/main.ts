@@ -1,6 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { Header, Preview } from './components';
 import { RouterOutlet } from '@angular/router';
+import { Auth } from '@app/services/auth';
+import { User } from '@link-sharing-app/shared';
 
 @Component({
   selector: 'app-main',
@@ -9,4 +11,14 @@ import { RouterOutlet } from '@angular/router';
   styleUrl: './main.scss',
   standalone: true,
 })
-export class Main {}
+export class Main {
+  currentUser = signal<User | null>(null);
+  constructor(private authService: Auth) {}
+
+  ngOnInit() {
+    this.authService.getCurrentUser().subscribe((res) => {
+      this.currentUser.set(res);
+      this.authService.currentUser.set(res);
+    });
+  }
+}
