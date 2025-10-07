@@ -1,0 +1,73 @@
+<div class="not-found-container">
+  <div class="not-found-content">
+    <div class="error-illustration">
+      <svg
+        width="200"
+        height="200"
+        viewBox="0 0 200 200"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <circle cx="100" cy="100" r="80" fill="#EFEBFF" />
+        <path
+          d="M80 70C80 64.4772 84.4772 60 90 60H110C115.523 60 120 64.4772 120 70V90C120 95.5228 115.523 100 110 100H90C84.4772 100 80 95.5228 80 90V70Z"
+          fill="#633CFF"
+        />
+        <path
+          d="M95 75H105V85H95V75Z"
+          fill="white"
+          stroke="white"
+          stroke-width="2"
+          stroke-linecap="round"
+        />
+        <circle cx="100" cy="120" r="5" fill="#633CFF" />
+        <path
+          d="M60 140C60 135 65 130 75 130C85 130 90 135 90 140"
+          stroke="#633CFF"
+          stroke-width="3"
+          stroke-linecap="round"
+        />
+        <path
+          d="M110 140C110 135 115 130 125 130C135 130 140 135 140 140"
+          stroke="#633CFF"
+          stroke-width="3"
+          stroke-linecap="round"
+        />
+      </svg>
+    </div>
+
+    <div class="error-text">
+      <h1 class="error-code">404</h1>
+      <h2 class="error-title">{{ "NotFound.Title" | translate }}</h2>
+      <p class="error-description">{{ "NotFound.Description" | translate }}</p>
+    </div>
+
+    @if (isAuthenticated) {
+    <div class="error-actions">
+      <button
+        pButton
+        type="button"
+        [label]="'NotFound.GoHome' | translate"
+        class="home-button"
+        (click)="navigate('/')"
+      ></button>
+    </div>
+    } @else {
+    <div class="helpful-links">
+      <p class="helpful-links-title">
+        {{ "NotFound.HelpfulLinks" | translate }}
+      </p>
+      <div class="links-grid">
+        <a class="link-item" (click)="navigate('login')">
+          <i class="pi pi-sign-in"></i>
+          <span>{{ "NotFound.Login" | translate }}</span>
+        </a>
+        <a class="link-item" (click)="navigate('register')">
+          <i class="pi pi-user-plus"></i>
+          <span>{{ "NotFound.Register" | translate }}</span>
+        </a>
+      </div>
+    </div>
+    }
+  </div>
+</div>

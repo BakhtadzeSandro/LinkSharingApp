@@ -20,4 +20,9 @@ export const routes: Routes = [
     canActivate: [anonymGuard],
   },
   ...mainRoutes,
+  {
+    path: '**',
+    loadComponent: () =>
+      import('./pages/not-found/not-found').then((m) => m.NotFound),
+  },
 ];
