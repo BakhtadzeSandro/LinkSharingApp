@@ -15,7 +15,11 @@ export class ProfileDetailsService {
     profileDetailsDto: ProfileDetailsDto,
     userId: string,
   ) {
-    console.log(profileDetailsDto, 'profileDetailsDto');
-    console.log(userId, 'userId');
+    const profileDetails = await this.profileDetailsModel.findOne({ userId });
+    if (profileDetails) {
+      await profileDetails.updateOne(profileDetailsDto);
+    } else {
+      await this.profileDetailsModel.create({ ...profileDetailsDto, userId });
+    }
   }
 }

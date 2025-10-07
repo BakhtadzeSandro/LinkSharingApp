@@ -1,4 +1,5 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
+import { Types } from 'mongoose';
 
 @Schema({
   collection: 'profile-details',
@@ -15,6 +16,9 @@ export class ProfileDetails {
 
   @Prop({ required: false })
   profileImage: string;
+
+  @Prop({ required: true, type: Types.ObjectId, ref: 'User' })
+  userId: string;
 }
 
 export const ProfileDetailsSchema =

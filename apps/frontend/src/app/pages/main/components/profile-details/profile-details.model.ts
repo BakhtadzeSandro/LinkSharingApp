@@ -4,5 +4,4 @@ export interface ProfileDetailsForm {
   firstName: FormControl<string | undefined>;
   lastName: FormControl<string | undefined>;
   email: FormControl<string | undefined>;
-  profileImage: FormControl<string | null | undefined>;
 }

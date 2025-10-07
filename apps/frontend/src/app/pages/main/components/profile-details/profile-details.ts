@@ -146,8 +146,7 @@ export class ProfileDetails implements OnInit {
       firstName: this.profileDetailsForm()?.value.firstName!,
       lastName: this.profileDetailsForm()?.value.lastName!,
       email: this.profileDetailsForm()?.value.email!,
-      // TODO: change this line
-      profileImage: this.profileDetailsForm()?.value.profileImage!,
+      profileImage: this.profileImage(),
     };
     this.profileDetailsService
       .updateProfileDetails(profileDetailsPayload)
@@ -167,7 +166,6 @@ export class ProfileDetails implements OnInit {
         Validators.required,
         Validators.email,
       ]),
-      profileImage: fb.control<string | undefined>(undefined),
     });
     this.profileDetailsForm.set(profileDetailsForm);
   }
