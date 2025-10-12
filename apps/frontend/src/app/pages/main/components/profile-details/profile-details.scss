@@ -1,8 +1,14 @@
 @use "@link-sharing-app/shared-ui/src/variables" as *;
 
+:host {
+  display: flex;
+  height: 100%;
+}
+
 .profile-details-container {
   padding: 40px 32px;
   height: 100%;
+  width: 100%;
   background-color: $color-white;
   border-radius: 16px;
   display: flex;
@@ -27,12 +33,14 @@
     flex-direction: column;
     gap: 16px;
     flex: 1;
+    overflow-y: auto;
+    min-height: 0;
+    margin-top: 32px;
     justify-content: center;
     .image-upload {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-top: 32px;
       background-color: $color-gray-very-light;
       padding: 40px 32px;
       border-radius: 16px;

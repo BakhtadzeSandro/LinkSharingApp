@@ -8,22 +8,87 @@
       type="button"
       [label]="'LinksBuilder.AddNewLink' | translate"
       class="add-new-button"
+      (click)="addNewLink()"
     ></button>
   </div>
   <div class="floating-content">
-    @if (isEmpty) {
+    @if (isEmpty()) {
     <div class="empty-state">
       <app-empty-links></app-empty-links>
+    </div>
+    } @else {
+    <div class="links-container">
+      <form [formGroup]="linksForm()!">
+        <div formArrayName="links" class="form-array">
+          @for (link of linksArray.controls; track link; let i = $index) {
+          <div class="link" [formGroupName]="i">
+            <div class="link-header">
+              <div class="link-header-title">
+                <i class="pi pi-link"></i>
+                <div>{{ "LinksBuilder.Link" | translate }}</div>
+                <div class="link-number">#{{ i + 1 }}</div>
+              </div>
+              <div class="link-header-remove" (click)="removeLink(i)">
+                <div>{{ "LinksBuilder.Remove" | translate }}</div>
+                <i class="pi pi-trash"></i>
+              </div>
+            </div>
+            <div class="link-body">
+              <label for="link-platform-{{ i }}" class="link-label">{{
+                "LinksBuilder.Platform" | translate
+              }}</label>
+              <div class="link-options">
+                <p-select
+                  [options]="linkOptions()"
+                  optionLabel="name"
+                  id="link-platform-{{ i }}"
+                  [placeholder]="'Common.PleaseSelectAnOption' | translate"
+                  formControlName="platform"
+                >
+                  <ng-template #selectedItem let-selectedOption>
+                    <div class="link-option">
+                      <i [class]="'pi ' + selectedOption.icon"></i>
+                      <span>{{ selectedOption.name }}</span>
+                    </div>
+                  </ng-template>
+                  <ng-template #item let-option>
+                    <div class="link-option">
+                      <i [class]="'pi ' + option.icon"></i>
+                      <span>{{ option.name }}</span>
+                    </div>
+                  </ng-template>
+                </p-select>
+              </div>
+              <label for="link-url-{{ i }}" class="link-label">{{
+                "LinksBuilder.Link" | translate
+              }}</label>
+              <div class="link-url">
+                <input
+                  type="text"
+                  pInputText
+                  id="link-url-{{ i }}"
+                  placeholder="https://www.example.com"
+                  formControlName="url"
+                />
+              </div>
+            </div>
+          </div>
+          }
+        </div>
+      </form>
     </div>
     }
   </div>
 
+  @if (!isEmpty()) {
   <div class="form-footer">
     <button
       pButton
       type="button"
       [label]="'Common.Save' | translate"
       class="save-button"
+      (click)="saveLinks()"
     ></button>
   </div>
+  }
 </div>
