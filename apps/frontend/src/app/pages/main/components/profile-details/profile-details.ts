@@ -20,7 +20,7 @@ import { ImageUploadService } from '@app/services/image-upload';
 import { ProfileDetailsForm } from './profile-details.model';
 import { debounceTime, distinctUntilChanged } from 'rxjs';
 import { PreviewService } from '@app/services/preview';
-import { ProfileDetailsService } from '@app/services/profile-details';
+import { ProfileService } from '@app/services/profile';
 import { ImgBBResponse, ProfileDetailsDto } from '@link-sharing-app/shared';
 
 @Component({
@@ -64,7 +64,7 @@ export class ProfileDetails implements OnInit {
     private translate: TranslateService,
     private fb: FormBuilder,
     private previewService: PreviewService,
-    private profileDetailsService: ProfileDetailsService
+    private profileService: ProfileService
   ) {}
 
   triggerFileInput() {
@@ -148,7 +148,7 @@ export class ProfileDetails implements OnInit {
       email: this.profileDetailsForm()?.value.email!,
       profileImage: this.profileImage(),
     };
-    this.profileDetailsService
+    this.profileService
       .updateProfileDetails(profileDetailsPayload)
       .subscribe((val) => console.log(val));
   }

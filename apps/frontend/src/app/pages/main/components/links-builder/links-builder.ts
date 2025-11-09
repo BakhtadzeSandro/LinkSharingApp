@@ -14,6 +14,8 @@ import {
   Validators,
 } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { ProfileService } from '@app/services/profile';
+import { LinksDto } from '@link-sharing-app/shared';
 
 @Component({
   selector: 'app-links-builder',
@@ -37,7 +39,14 @@ export class LinksBuilder implements OnInit {
     FormGroup<{ links: FormArray<FormGroup<LinkForm>> }> | undefined
   >(undefined);
 
-  constructor(private fb: FormBuilder) {}
+  get linksArray(): FormArray {
+    return this.linksForm()?.get('links') as FormArray;
+  }
+
+  constructor(
+    private fb: FormBuilder,
+    private profileService: ProfileService
+  ) {}
 
   ngOnInit() {
     this.initializeForm();
@@ -49,10 +58,6 @@ export class LinksBuilder implements OnInit {
         links: this.fb.array<FormGroup<LinkForm>>([]),
       })
     );
-  }
-
-  get linksArray(): FormArray {
-    return this.linksForm()?.get('links') as FormArray;
   }
 
   addNewLink() {
@@ -81,11 +86,11 @@ export class LinksBuilder implements OnInit {
 
   saveLinks() {
     if (this.linksForm()?.valid) {
-      const links: Link[] = this.linksArray.value.map((linkForm: Link) => ({
-        platform: linkForm.platform || '',
-        url: linkForm.url || '',
-      }));
+      const links: LinksDto[] = this.linksArray.value;
       console.log('Saving links:', links);
+      this.profileService
+        .updateLinks(links)
+        .subscribe((val) => console.log(val));
     } else {
       console.log('Form is invalid');
     }

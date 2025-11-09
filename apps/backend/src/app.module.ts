@@ -8,12 +8,12 @@ import { APP_GUARD } from '@nestjs/core';
 import { JwtAuthGuard } from './guards/auth.guard';
 import { JwtService } from '@nestjs/jwt';
 import { ConfigModule, ConfigService } from '@nestjs/config';
-import { ProfileDetailsModule } from './profile-details/profile-details.module';
+import { ProfileModule } from './profile/profile.module';
 import { ImageUploaderModule } from './image-uploader/image-uploader.module';
 
 @Module({
   imports: [
-    MongooseModule.forRoot('mongodb://127.0.0.1:27018', {
+    MongooseModule.forRoot('mongodb://127.0.0.1:27017', {
       dbName: 'linksharing',
     }),
     ConfigModule.forRoot({
@@ -21,7 +21,7 @@ import { ImageUploaderModule } from './image-uploader/image-uploader.module';
     }),
     AuthModule,
     UsersModule,
-    ProfileDetailsModule,
+    ProfileModule,
     ImageUploaderModule,
   ],
   controllers: [AppController],
